@@ -88,6 +88,15 @@ public abstract class Page implements PageTreeNode {
         notifyDataChanged();
     }
 
+    /**
+     * Sets any metadata associated with this page. Useful for instance if you need to store an app specific key for
+     * the corresponding value that the set has selected
+     */
+    public Page setMetadata(String key, String value) {
+        mData.putString(key, value);
+        return this;
+    }
+
     public void notifyDataChanged() {
         mCallbacks.onPageDataChanged(this);
     }
