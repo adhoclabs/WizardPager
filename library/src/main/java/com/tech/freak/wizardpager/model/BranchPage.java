@@ -104,6 +104,15 @@ public class BranchPage extends SingleFixedChoicePage {
         return this;
     }
 
+    /**
+     * Sets any metadata associated with this page. Useful for instance if you need to store an app specific key for
+     * the corresponding value that the set has selected
+     */
+    public BranchPage setMetadata(String key, String value) {
+        mData.putString(key, value);
+        return this;
+    }
+
     private static class Branch {
         public String choice;
         public PageList childPageList;
