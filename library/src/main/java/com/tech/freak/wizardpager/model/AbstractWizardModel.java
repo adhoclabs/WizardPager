@@ -32,11 +32,10 @@ public abstract class AbstractWizardModel implements ModelCallbacks {
     protected Context mContext;
 
     private List<ModelCallbacks> mListeners = new ArrayList<ModelCallbacks>();
-    private PageList mRootPageList;
+    protected PageList mRootPageList;
 
     public AbstractWizardModel(Context context) {
     	mContext = context;
-    	mRootPageList = onNewRootPageList();
     }
 
     /**
@@ -63,10 +62,16 @@ public abstract class AbstractWizardModel implements ModelCallbacks {
     }
 
     public Page findByKey(String key) {
+        if (mRootPageList == null) {
+            throw new RuntimeException("Unable to continue. Please ensure you have initialized mRootPageList first.");
+        }
         return mRootPageList.findByKey(key);
     }
 
     public void load(Bundle savedValues) {
+        if (mRootPageList == null) {
+            throw new RuntimeException("Unable to continue. Please ensure you have initialized mRootPageList first.");
+        }
         for (String key : savedValues.keySet()) {
             mRootPageList.findByKey(key).resetData(savedValues.getBundle(key));
         }
@@ -89,6 +94,9 @@ public abstract class AbstractWizardModel implements ModelCallbacks {
      * user's choices.
      */
     public List<Page> getCurrentPageSequence() {
+        if (mRootPageList == null) {
+            throw new RuntimeException("Unable to continue. Please ensure you have initialized mRootPageList first.");
+        }
         ArrayList<Page> flattened = new ArrayList<Page>();
         mRootPageList.flattenCurrentPageSequence(flattened);
         return flattened;
