@@ -14,8 +14,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">12dp</item>
         <item name="android:paddingLeft">@dimen/list_item_padding_left</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">22sp</item>
         <item name="android:textColor">@color/brnr_orange</item>
+        <item name="fontPath">fonts/geogrotesque-regular-webfont.ttf</item>
     </style>
 
     <style name="WizardPageContent">
